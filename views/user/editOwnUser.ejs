@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page</title>
+</head>
+<body>
+    <h1>Edit Your Profile</h1>
+
+    <form action="/user/<%= user.id %>/edit" method="post">
+        <label for="BIO">Bio:</label><br>
+        <input type="text" name="bio" id="BIO" value="<%= user.bio %>"><br><br>
+        <label for="IMAGE">Image:</label><br>
+        <input type="file" name="imageUrl" id="IMAGE"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>

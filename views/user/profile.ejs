@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+</head>
+<body>
+    <center>
+        <h1>Profile Detail</h1>
+
+        <h4><%= profile.username %></h4>
+        <img src="<%= profile.profileImg %>" style="width: 15rem;" alt="foto profil">
+        <p><%= profile.bio %></p>
+
+        <h3>Post:</h3>
+        <% profile.Posts.forEach(el => { %>
+            <label for="<%= el.title %>"><%= el.caption %></label><br>
+            <img src="<%- el.imageUrl %>" style="width: 10rem; margin-left: 2rem; margin-right: 2rem;" alt="<%= el.title %>" id="<%= el.title %>"><br>
+            <a href="/user/post/<%= el.id %>"><button>Pergi ke postingan</button></a><br><br>
+        <% }) %>
+
+    </center>
+</body>
+</html>

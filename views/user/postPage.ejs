@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Page</title>
+</head>
+<body>
+    <a href="/user/<%= user.id %>"><button>Profil Kamu</button></a>
+    <center>
+    <h1>Kijang Lopers</h1><br>
+
+    <form action="/user" method="get">
+        <label for="SEARCH">search</label><br>
+        <input type="text" name="search" id="SEARCH">
+        <input type="submit" value="Search">
+    </form><br>
+    <% post.forEach(el => { %>
+     <label for="<%= el.title %>"><%= el.Profile.username %>
+<a href="/user/profile/<%= el.Profile.id %>"><button>Detail Profil</button></a>
+    </label><br>
+     <img src="<%= el.imageUrl %>" style="width: 25rem;" id="<%= el.title %>" alt="<%= el.title %>">
+     <p><%= el.caption %></p>
+      
+     <br><br>
+    <% }) %>
+    </center>
+</body>
+</html>

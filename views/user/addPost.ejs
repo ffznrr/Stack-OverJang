@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+</head>
+<body>
+    <h1>Add Post</h1>
+    <form action="/user/<%= id %>/post/add" method="post">
+        <label for="TITLE">Title:</label><br>
+        <input type="text" name="title" id="TITLE"><br>
+        <label for="IMAGEURL">Image:</label><br>
+        <input type="file" name="imageUrl" id="IMAGEURL"><br>
+        <label for="CAPTION">Caption:</label><br>
+        <input type="text" name="caption" id="CAPTION"><br><br>
+        <input type="hidden" name="ProfileId" value="<%= id %>">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page</title>
+</head>
+<body>
+    <a href="/user/<%= user.id %>/edit"><button>Edit Profil Kamu</button></a>
+
+    <h1>Your User</h1>
+    <%= user.username %> <br>
+    <img src="<%= user.imageUrl %>" alt="foto profil"><br>
+    <%= user.bio %> <br>
+
+    <a href="/user/<%= user.id %>/post"><button>Your Post</button></a>
+</body>
+</html>

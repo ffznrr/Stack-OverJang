@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Detail</title>
+</head>
+<body>
+    <center>
+        <h1>Post Detail</h1>
+        <label for="<%= post.title %>"><%= post.Profile.username %></label>
+        <a href="/user/profile/<%= post.Profile.id %>"><button>Detail Profil</button></a>
+        <br>
+        <img src="<%= post.imageUrl %>" alt="<%= post.title %>" id="<%= post.title %>">
+        <p><% post.Comments.forEach(el => { %>
+            <%= el.Profile.username %> <br>
+         <%= el.comment %> <br><br>
+        <% }) %></p>
+        <form action="/user/post/<%= post.id %>/comment" method="post">
+            <label for="COMMENT">Masukkan Komen</label><br>
+            <input type="text" name="comment" id="COMMENT">
+            <input type="hidden" name="ProfileId" value="<%= user.id %>">
+            <input type="submit" value="Tambah">
+        </form> <br>
+    </center>
+</body>
+</html>

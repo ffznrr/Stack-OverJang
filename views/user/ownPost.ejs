@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Post</title>
+</head>
+<body>
+    <h1>Your Post</h1>
+    <a href="/user/<%= user.id %>/post/add"><button>Add Post</button></a>
+    <br><br><br>
+    <% post.forEach(el => { %>
+        <a href="/user/<%= user.id %>/post/edit/<%= el.id %>"><button>Edit Post</button></a>
+        <label for="<%= el.title %>"><%= el.caption %></label><br>
+        <img src="<%- el.imageUrl %>" style="width: 10rem; margin-left: 2rem; margin-right: 2rem;" alt="<%= el.title %>" id="<%= el.title %>"><br>
+        <a href="/user/post/<%= el.id %>"><button>Pergi ke postingan</button></a>
+        <a href="/user/<%= user.id %>/post/delete/<%= el.id %>"><button>Delete Post</button></a>
+        <br><br>
+    <% }) %>
+</body>
+</html>

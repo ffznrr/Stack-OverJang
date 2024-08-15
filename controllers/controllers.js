@@ -1,5 +1,6 @@
 let bcrypt = require('bcryptjs');
-const { User, Profile, Post, Comment } = require('../models/index')
+const { User, Profile, Post, Comment } = require('../models/index');
+const { where } = require('sequelize');
 
 
 class Controllers {
@@ -58,6 +59,7 @@ class Controllers {
             console.log(err);
         }
     }
+
 }
 
 module.exports = Controllers
