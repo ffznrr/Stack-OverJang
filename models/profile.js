@@ -16,11 +16,40 @@ module.exports = (sequelize, DataTypes) => {
       Profile.hasMany(models.Post)
     }
   }
+
   Profile.init({
-    username: DataTypes.STRING,
-    profileImg: DataTypes.TEXT,
-    UserId: DataTypes.INTEGER,
-    bio: DataTypes.STRING
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    },
+    profileImg: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    },
+    bio: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true
+      }
+    }
   }, {
     sequelize,
     modelName: 'Profile',

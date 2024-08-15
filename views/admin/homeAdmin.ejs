@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div>
+        <div class="navbar bg-base-100">
+            <div class="navbar-start">
+              <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                  
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h8m-8 6h16" />
+                  </svg>
+                </div>
+                <ul
+                  tabindex="0"
+                  class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                  <li><a>Item 1</a></li>
+                  <li>
+                    <a>Parent</a>
+                    <ul class="p-2">
+                      <li><a>Submenu 1</a></li>
+                      <li><a>Submenu 2</a></li>
+                    </ul>
+                  </li>
+                  <li><a>Item 3</a></li>
+                </ul>
+              </div>
+              <a class="btn btn-ghost text-xl">StackOverJang</a>
+            </div>
+            <div class="navbar-end">
+              <a href="/admin/logout" class="btn">Logout</a>
+            </div>
+          </div>
+    </div>
+    <div class="p-10">
+    <div class="flex justify-end mr-16">
+<button class="btn" onclick="my_modal_2.showModal()">open modal</button>
+<dialog id="my_modal_2" class="modal">
+  <div class="modal-box">
+    <h1 class="text-2xl text-center mb-5 mt-2">Input Data</h1>
+    <form action="/admin/add" method="post">
+      <label class="input input-bordered flex items-center gap-2">
+        Username
+        <input type="text" class="grow" name="username" placeholder="username" />
+      </label><br>
+      <label class="input input-bordered flex items-center gap-2">
+        Email
+        <input type="text" class="grow" name="email" placeholder="email" />
+      </label><br>
+      <label class="input input-bordered flex items-center gap-2">
+        Password
+        <input type="password" class="grow" placeholder="Password" name="password"/>
+      </label><br>
+      <label class="input input-bordered flex items-center gap-2">
+        Image
+        <input type="file" class="grow" placeholder="Image" name="profileImg" />
+      </label><br>
+      <label class="input input-bordered flex items-center gap-2">
+        Bio
+        <input type="text" class="grow" placeholder="Bio" name="bio" />
+      </label><br>
+      <div class="flex justify-center mt-5">
+        <button class="btn btn-outline btn-success">Submit</button>
+      </div>
+    </form>
+    
+
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+    </div>
+  </div>
+    <div class="">
+        <div class="overflow-x">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center">Username</th>
+                  <th class="text-center">Bio</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% profile.forEach((el)=>{ %>
+                <tr>
+                  <td class="flex justify-center">
+                    <div class="flex items-center gap-3">
+                      <div class="avatar text-center">
+                        <div class="mask mask-squircle h-12 w-12">
+                          <img
+                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                            alt="Avatar Tailwind CSS Component" />
+                        </div>
+                      </div>
+                      <div>
+                        <div class="font-bold"><%= el.username %></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <%= el.bio %>
+                    <br />
+                  </td>
+                  <td class="text-center">
+                    <a href="/admin/<%= el.id %>/details"><button class="btn btn-outline btn-success">See Details</button></a>
+                    <a href="/admin/<%= el.id %>/delete"><button class="btn btn-outline btn-error">Delete</button></a>
+                </td>
+                </tr>
+                <%}) %>
+              </tbody>
+            </table>
+          </div>
+    </div>
+</div>
+
+</body>
+</html>
