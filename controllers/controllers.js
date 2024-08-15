@@ -53,8 +53,13 @@ class Controllers {
 
             await Profile.create({ username, profileImg, UserId: userData.id, bio })
 
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            if (error.name === 'SequelizeValidationError') {
+                let errors = error.errors.map(err => err.message);
+                res.render('login', { errors });
+              } else {
+                res.status(500).send('Internal Server Error');
+              }
         }
     }
 

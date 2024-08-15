@@ -3,7 +3,8 @@
    <head>
       <meta charset="utf-8">
       <title>StackOverJang</title>
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://unpkg.com/simple-notify@0.4.0/dist/simple-notify.min.css">
+      <script src="https://unpkg.com/simple-notify@0.4.0/dist/simple-notify.min.js"></script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
@@ -223,10 +224,10 @@ form .btn input[type="submit"]{
                </form>
                <form action="/register" method="post" class="signup">
                   <div class="field">
-                     <input type="text" placeholder="Username" name="username" required>
+                     <input type="text" placeholder="Username" name="username">
                   </div>
                   <div class="field">
-                    <input type="text" placeholder="Bio" name="bio" required>
+                    <input type="text" placeholder="Bio" name="bio" >
                  </div>
                      <input style="width: 100%;" type="file" placeholder="Image" name="profileImg" required>
                   <div class="field">
@@ -243,6 +244,32 @@ form .btn input[type="submit"]{
             </div>
          </div>
       </div>
+        
+      <script>
+        <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+          var errors = <%- JSON.stringify(errors) %>;
+      
+          errors.forEach(function(error) {
+            new Notify({
+              status: 'error',
+              title: 'Error',
+              text: error,
+              effect: 'fade',
+              speed: 300,
+              showIcon: true,
+              showCloseButton: true,
+              autoclose: true,
+              autotimeout: 3000,
+              gap: 20,
+              distance: 20,
+              type: 1,
+              position: 'right top'
+            });
+          });
+        <% } %>
+      </script>
+      
+
       <script>
          const loginText = document.querySelector(".title-text .login");
          const loginForm = document.querySelector("form.login");
