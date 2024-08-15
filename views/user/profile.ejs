@@ -6,7 +6,18 @@
     <title>Profile Page</title>
 </head>
 <body>
-    <center>
+        <div>
+            <div class="navbar bg-white">
+            <div class="flex-1">
+              <a class="btn btn-ghost text-xl">StackOverJang</a>
+            </div>
+            <div class="flex-none">
+                <a href="/user/<%= user.id %>">
+                    <button class="btn btn-outline btn-warning mr-5">Profil Kamu</button></a>
+                    <button class="btn btn-outline btn-error">Logout</button>
+            </div>
+          </div>
+        </div> 
         <h1>Profile Detail</h1>
 
         <h4><%= profile.username %></h4>
@@ -19,7 +30,5 @@
             <img src="<%- el.imageUrl %>" style="width: 10rem; margin-left: 2rem; margin-right: 2rem;" alt="<%= el.title %>" id="<%= el.title %>"><br>
             <a href="/user/post/<%= el.id %>"><button>Pergi ke postingan</button></a><br><br>
         <% }) %>
-
-    </center>
 </body>
 </html>

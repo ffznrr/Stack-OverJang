@@ -36,8 +36,6 @@ class Controllers {
                 res.send('Email Tidak Ditemukan')
             }
 
-
-
         } catch (err) {
             console.log(err);
         }

@@ -58,7 +58,6 @@ class UserControllers {
 
     static async renderProfile(req, res) {
         try {
-            // console.log(req.params);
             const { id } = req.params
 
             let profile = await Profile.findOne({

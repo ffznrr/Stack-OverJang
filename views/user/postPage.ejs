@@ -4,26 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <a href="/user/<%= user.id %>"><button>Profil Kamu</button></a>
-    <center>
-    <h1>Kijang Lopers</h1><br>
-
-    <form action="/user" method="get">
-        <label for="SEARCH">search</label><br>
-        <input type="text" name="search" id="SEARCH">
-        <input type="submit" value="Search">
-    </form><br>
+    <div>
+        <div class="navbar bg-white">
+        <div class="flex-1">
+          <a class="btn btn-ghost text-xl">StackOverJang</a>
+        </div>
+        <div class="flex-none">
+            <a href="/user/<%= user.id %>">
+                <button class="btn btn-outline btn-warning mr-5">Profil Kamu</button></a>
+                <button class="btn btn-outline btn-error">Logout</button>
+        </div>
+      </div>
+    </div> 
+    <div class="flex justify-center">
+        <div>
+            <form action="/user" method="get">
+                <label for="SEARCH">search</label><br>
+                <div class="flex ">
+                    <input type="text" name="search" id="SEARCH" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                    <button type="submit" class="btn btn-outline mx-auto">Default</button>
+                </div>
+        
+            </form><br>
+        </div>
+    </div>
     <% post.forEach(el => { %>
-     <label for="<%= el.title %>"><%= el.Profile.username %>
-<a href="/user/profile/<%= el.Profile.id %>"><button>Detail Profil</button></a>
-    </label><br>
-     <img src="<%= el.imageUrl %>" style="width: 25rem;" id="<%= el.title %>" alt="<%= el.title %>">
-     <p><%= el.caption %></p>
-      
-     <br><br>
-    <% }) %>
-    </center>
+        <div class="p-5 border-4">
+         <label for="<%= el.title %>"><%= el.Profile.username %>
+    <a href="/user/profile/<%= el.Profile.id %>"><button>Detail Profil</button></a>
+        </label><br>
+        <div class="flex align">
+            <img src="<%= el.imageUrl %>" class="mr-10" style="width: 25rem;" id="<%= el.title %>" alt="<%= el.title %>">
+            <p>Caption : <%= el.caption %></p>
+        </div>
+        </div>
+        <% }) %>
 </body>
 </html>

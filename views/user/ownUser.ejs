@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    <div>
+        <div class="navbar bg-white">
+        <div class="flex-1">
+          <a class="btn btn-ghost text-xl">StackOverJang</a>
+        </div>
+        <div class="flex-none">
+            <a href="/user/<%= user.id %>">
+                <button class="btn btn-outline btn-warning mr-5">Profil Kamu</button></a>
+                <button class="btn btn-outline btn-error">Logout</button>
+        </div>
+      </div>
+    </div> 
     <a href="/user/<%= user.id %>/edit"><button>Edit Profil Kamu</button></a>
 
     <h1>Your User</h1>
