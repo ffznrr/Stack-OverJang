@@ -19,25 +19,30 @@ class Controllers {
 
     static async login(req, res) {
         try {
-            const { email, password } = req.body
+            const { email, password } = req.body;
             const find = await User.findOne({
-                where: {
-                    email
-                }
-            })
+                where: { email }
+            });
+    
             if (find) {
                 if (bcrypt.compareSync(password, find.password)) {
-                    req.session.email = find.email
-                    res.redirect('/user')
+                    req.session.email = find.email;
+                    req.session.role = find.role;
+                    
+                    if (req.session.role === true) {
+                        return res.redirect('/admin');
+                    }
+                    
+                    return res.redirect('/user');
                 } else {
-                    res.send('password salah')
+                    return res.render('login', { errors: ['Incorrect password'] });
                 }
             } else {
-                res.send('Email Tidak Ditemukan')
+                return res.render('login', { errors: ['Email not found'] });
             }
-
         } catch (err) {
             console.log(err);
+            return res.status(500).send('Internal Server Error');
         }
     }
 
@@ -53,6 +58,7 @@ class Controllers {
 
             await Profile.create({ username, profileImg, UserId: userData.id, bio })
 
+            res.redirect('/login')
         } catch (error) {
             if (error.name === 'SequelizeValidationError') {
                 let errors = error.errors.map(err => err.message);
@@ -60,6 +66,40 @@ class Controllers {
               } else {
                 res.status(500).send('Internal Server Error');
               }
+        }
+    }
+
+    static async landingPage(req , res){
+        try {
+            
+            let { search } = req.query;
+            let whereCondition = {};
+            
+            if (search) {
+                whereCondition = {
+                    title: {
+                        [Op.iLike]: `%${search}%`
+                    }
+                };
+            }
+            
+            let post = await Post.findAll({
+                where: whereCondition,
+                include: [
+                    {
+                        model: Profile
+                    }
+                ]
+            });
+
+            // res.send(posting)
+            // console.log(post)
+            res.render('landingPage', { post })
+
+            
+        } catch (error) {
+            console.log(error);
+            res.send(error);
         }
     }
 

@@ -64,8 +64,14 @@ class UserControllers {
                 where: { id },
                 include: Post
             })
+
+            let email = req.session.email;
+            
+            let user = await User.findOne({
+                where: { email }
+            });
             // res.send(profile)
-            res.render('user/profile', { profile })
+            res.render('user/profile', { profile , user })
         } catch (err) {
             console.log(err);
             res.send(err);
@@ -96,6 +102,8 @@ class UserControllers {
 
             let email = req.session.email;
 
+            // res.send(post)
+
             let user = await User.findOne({
                 where: { email }
             })
@@ -116,8 +124,11 @@ class UserControllers {
             const {id} = req.params
 
             await Comment.create({
-                comment, ProfileId, PostId: id
+                comment, ProfileId ,PostId: id
             })
+
+            // console.log(req.body);
+            // console.log(req.params);
 
             res.redirect(`/user/post/${id}`)
 
@@ -311,6 +322,17 @@ class UserControllers {
         } catch (error) {
           console.log(error);  
           res.send(error)
+        }
+    }
+
+    static async handleLogoutUser(req, res) {
+        try {
+            req.session.destroy(() => {
+                res.redirect('/login')
+            })
+
+        } catch (err) {
+            console.log(err);
         }
     }
 }

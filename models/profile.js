@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       Profile.hasMany(models.Comment)
       Profile.hasMany(models.Post)
     }
+
+    get profileCode(){
+      return `${this.username}-${this.UserId}`
+    }
   }
   Profile.init({
     username: {

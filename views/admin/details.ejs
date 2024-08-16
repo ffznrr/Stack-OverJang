@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div>
+      <div class="navbar bg-base-100">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div
+              tabindex="0"
+              role="button"
+              class="btn btn-ghost lg:hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li><a>Item 1</a></li>
+              <li>
+                <a>Parent</a>
+                <ul class="p-2">
+                  <li><a>Submenu 1</a></li>
+                  <li><a>Submenu 2</a></li>
+                </ul>
+              </li>
+              <li><a>Item 3</a></li>
+            </ul>
+          </div>
+          <a class="btn btn-ghost text-xl">StackOverJang</a>
+        </div>
+        <div class="navbar-end">
+          <a
+            class="btn mr-5"
+            href="/admin"
+          >
+            Back To Home</a
+          >
+          <a href="/admin/logout" class="btn">Logout</a>
+        </div>
+      </div>
+    </div>
+    <div class="px-80 py-10">
+      <div class="card bg-base-100 w-full h-[550px] shadow-xl">
+        <figure>
+          <img
+            src="<%= profile.profileImg %>"
+            alt="Shoes"
+          />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Username : <%= profile.username %></h2>
+          <p><%= profile.bio %></p>
+          <div class="card-actions justify-end">
+            <button
+              class="btn"
+              onclick="my_modal_2.showModal()"
+            >
+              See Post User
+            </button>
+            <dialog
+              id="my_modal_2"
+              class="modal"
+            >
+              <div class="modal-box w-full">
+                <% profile.Posts.map((el)=>{%>
+                <div class="w-full border-4 border-black rounded-lg p-5 mb-5">
+                  <img
+                    class="rounded-md mb-5"
+                    width="full"
+                    height="100px"
+                    src="<%= el.imageUrl %>"
+                    alt="img<%= el.title %>"
+                  />
+                  <h1 class="text-center text-2xl font-bold">Title :</h1>
+                  <h1 class="text-center"><%= el.title %></h1>
+                  <p class="text-center text-2xl font-bold">Caption :</p>
+                  <p class="text-center"><%= el.caption %></p>
+                  <a
+                    class="flex justify-end"
+                    href="/admin/<%= profile.id %>/post/<%= el.id %>"
+                    ><button class="btn btn-outline btn-error">
+                      Delete
+                    </button></a
+                  >
+                </div>
+                <% }) %>
+              </div>
+              <form
+                method="dialog"
+                class="modal-backdrop"
+              >
+                <button>close</button>
+              </form>
+            </dialog>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
